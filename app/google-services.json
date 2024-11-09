@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "900873766415",
+    "project_id": "chat-app-gita",
+    "storage_bucket": "chat-app-gita.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900873766415:android:7e6b1f6348d2a26246057a",
+        "android_client_info": {
+          "package_name": "com.example.mamadiyorov_lazizbek.chatappgita"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl9uw6wxW5HFVxyB2zKVdS9eKj6PYmq6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
