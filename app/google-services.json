@@ -12,7 +12,20 @@
           "package_name": "com.example.mamadiyorov_lazizbek.chatappgita"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "900873766415-6kk6m63lrdlmasamgrr18iijo90japoc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mamadiyorov_lazizbek.chatappgita",
+            "certificate_hash": "de47c36f83e29525d9ef942ae715e8de601a2488"
+          }
+        },
+        {
+          "client_id": "900873766415-abvtiujr5jt1ro07u8adhg39uq5jnnbp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCl9uw6wxW5HFVxyB2zKVdS9eKj6PYmq6w"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900873766415-abvtiujr5jt1ro07u8adhg39uq5jnnbp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
