@@ -10,6 +10,7 @@ interface AuthViewModel {
     fun firebaseAuthWithGoogle(idToken: String)
 
     val openUserAuthenticated : LiveData<Unit>
+    fun openUserAuthenticated()
     val error: LiveData<String>
 
 }

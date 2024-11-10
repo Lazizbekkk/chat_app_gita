@@ -5,6 +5,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/enterScreen">
 
+
     <fragment
         tools:layout="@layout/screen_enter"
         android:id="@+id/enterScreen"
