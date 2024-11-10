@@ -14,10 +14,27 @@
         <action
             android:id="@+id/action_enterScreen_to_screenUserList"
             app:destination="@id/screenUserList" />
+
     </fragment>
     <fragment
         tools:layout="@layout/screen_user_list"
         android:id="@+id/screenUserList"
         android:name="com.example.mamadiyorov_lazizbek.chatappgita.ui.screens.user_list.ScreenUserList"
-        android:label="ScreenUserList" />
+        android:label="ScreenUserList" >
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="userEmail"
+            app:argType="string" />
+        <argument
+            android:name="userProfileImage"
+            app:argType="string" />
+
+    </fragment>
+
+
 </navigation>

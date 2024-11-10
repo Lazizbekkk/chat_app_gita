@@ -1,10 +1,11 @@
 package com.example.mamadiyorov_lazizbek.chatappgita.data.sourse.data
 
+import java.io.Serializable
+
 data class MessageData(
     val messageId: String,
     val message: String,
-    val fromUserId: String,
-    val toUserId: String,
+    val kimdanUserId: String,
+    val kimgaUserId: String,
     val sentTime: String
-    // fromUserId -> toUserId   kimdan -> kimga xabar boryabdi shu maqsadda yozildi
-)
+): Serializable

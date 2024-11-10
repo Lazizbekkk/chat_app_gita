@@ -2,11 +2,15 @@ package com.example.mamadiyorov_lazizbek.chatappgita.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.mamadiyorov_lazizbek.chatappgita.R
 import com.example.mamadiyorov_lazizbek.chatappgita.data.sourse.data.UserData
 import com.example.mamadiyorov_lazizbek.chatappgita.databinding.ItemUsersBinding
+import de.hdodenhof.circleimageview.CircleImageView
 
 class UserAdapter: ListAdapter<UserData, UserAdapter.UserVH>(diffutil) {
     object diffutil: DiffUtil.ItemCallback<UserData>(
@@ -24,7 +28,17 @@ class UserAdapter: ListAdapter<UserData, UserAdapter.UserVH>(diffutil) {
     inner class UserVH(private val binding: ItemUsersBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(){
             binding.userName.text = currentList[adapterPosition].userName
+            loadUserProfileImage(currentList[adapterPosition].userProfileImage, binding.profileImage)
+
         }
+        private fun loadUserProfileImage(imageUrl: String, imageView: CircleImageView) {
+            Glide.with(imageView.context)
+                .load(imageUrl)
+                .placeholder(R.drawable.ic_def_contact) // rasm yuklanayotganda ko'rsatiladigan tasvir
+                .error(R.drawable.ic_def_contact) // rasm yuklanishda xato bo'lsa ko'rsatiladigan tasvir
+                .into(imageView)
+        }
+
 
     }
 

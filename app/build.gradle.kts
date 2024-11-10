@@ -85,7 +85,7 @@ dependencies {
 //    // Mask Edit Text
 //    implementation(libs.maskededittext)
 
-    // Glide
+
 //    implementation (libs.glide)
 //
 //    // Google auth.
@@ -93,5 +93,8 @@ dependencies {
 //    implementation (libs.play.services.auth)
     implementation ("com.google.android.gms:play-services-auth:21.2.0")
     implementation ("com.google.firebase:firebase-auth:23.1.0")
+
+    // Glide
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 
 }

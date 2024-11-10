@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import com.example.mamadiyorov_lazizbek.chatappgita.repository.AppRepository
 import com.example.mamadiyorov_lazizbek.chatappgita.repository.AppRepositoryImpl
 
-class AuthViewModelImpl : AuthViewModel, ViewModel() {
-    private val repository: AppRepository = AppRepositoryImpl()
+class AuthViewModelImpl(userId: String) : AuthViewModel, ViewModel() {
+    private val repository: AppRepository = AppRepositoryImpl(userId)
 
     override val setEnabledEnterButton: MutableLiveData<Boolean> = MutableLiveData()
     override val inputUserNickName: MutableLiveData<String> = MutableLiveData()
