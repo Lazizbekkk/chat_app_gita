@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="12dp"
+    android:layout_marginHorizontal="16dp"
+    android:orientation="vertical"
+    android:background="?selectableItemBackground"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/profile_image"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_def_contact"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"/>
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Lazizbek"
+                android:textSize="22sp"
+                android:layout_marginStart="8dp"
+                android:padding="4dp"
+                app:layout_constraintTop_toTopOf="@id/profile_image"
+                app:layout_constraintBottom_toBottomOf="@id/profile_image"
+                app:layout_constraintStart_toEndOf="@id/profile_image"
+                tools:ignore="MissingConstraints" />
+
+
+        </LinearLayout>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    <View
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#33000000"/>
+
+
+
+
+
+
+
+
+</LinearLayout>

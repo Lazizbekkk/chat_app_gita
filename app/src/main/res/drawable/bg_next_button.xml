@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Bosilganda rang -->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="#0288D1"/> <!-- Bosilgan rang -->
+            <corners android:radius="16dp"/>
+        </shape>
+    </item>
+    <!-- Bosilmagan rang -->
+    <item>
+        <shape>
+            <solid android:color="#4D03A9F4"/> <!-- Bosilmagan rang -->
+            <corners android:radius="16dp"/>
+        </shape>
+    </item>
+</selector>

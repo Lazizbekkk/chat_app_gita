@@ -79,5 +79,14 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore)
 
+    // Mask Edit Text
+    implementation(libs.maskededittext)
+
+    // Glide
+    implementation (libs.glide)
+
+    // Google auth
+    implementation (libs.firebase.auth)
+    implementation (libs.play.services.auth)
 
 }
