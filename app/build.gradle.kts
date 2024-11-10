@@ -86,7 +86,7 @@ dependencies {
     // Glide
     implementation (libs.glide)
 
-    // Google auth
+    // Google auth.
     implementation (libs.firebase.auth)
     implementation (libs.play.services.auth)
 
