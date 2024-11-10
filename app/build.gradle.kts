@@ -60,6 +60,8 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
+
+
     // Room
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
@@ -80,14 +82,16 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore)
 
-    // Mask Edit Text
-    implementation(libs.maskededittext)
+//    // Mask Edit Text
+//    implementation(libs.maskededittext)
 
     // Glide
-    implementation (libs.glide)
-
-    // Google auth.
-    implementation (libs.firebase.auth)
-    implementation (libs.play.services.auth)
+//    implementation (libs.glide)
+//
+//    // Google auth.
+//    implementation (libs.firebase.auth)
+//    implementation (libs.play.services.auth)
+    implementation ("com.google.android.gms:play-services-auth:21.2.0")
+    implementation ("com.google.firebase:firebase-auth:23.1.0")
 
 }
