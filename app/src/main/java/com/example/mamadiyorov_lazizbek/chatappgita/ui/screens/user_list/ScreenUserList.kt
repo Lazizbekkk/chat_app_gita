@@ -49,7 +49,8 @@ class ScreenUserList : Fragment(R.layout.screen_user_list) {
                     userIdOther = it.userId,
                     userNameNextOther = it.userName,
                     userProfileImageOther = it.userProfileImage,
-                    userEmailOther = it.userEmail
+                    userEmailOther = it.userEmail,
+                    userIdCurrent = ""
                 )
             )
         }
