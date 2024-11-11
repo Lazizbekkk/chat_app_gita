@@ -10,21 +10,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mamadiyorov_lazizbek.chatappgita.R
 import com.example.mamadiyorov_lazizbek.chatappgita.data.sourse.data.MessageData
 
-class ChatAdapter(private val currentUserId: String) : ListAdapter<MessageData, RecyclerView.ViewHolder>(MessageDiffCallback()) {
+class ChatAdapter(private val currentUserId: String) :
+    ListAdapter<MessageData, RecyclerView.ViewHolder>(MessageDiffCallback) {
 
     private val VIEW_TYPE_SENT = 1
     private val VIEW_TYPE_RECEIVED = 2
 
     override fun getItemViewType(position: Int): Int {
-        return if (getItem(position).fromUserId == currentUserId) VIEW_TYPE_SENT else VIEW_TYPE_RECEIVED
+        return if (getItem(position).kimdanUserId == currentUserId) VIEW_TYPE_SENT else VIEW_TYPE_RECEIVED
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == VIEW_TYPE_SENT) {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_sent, parent, false)
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.item_sent, parent, false)
             SentMessageViewHolder(view)
         } else {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_come, parent, false)
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.item_come, parent, false)
             ReceivedMessageViewHolder(view)
         }
     }
@@ -53,14 +56,15 @@ class ChatAdapter(private val currentUserId: String) : ListAdapter<MessageData, 
             receivedMessageTextView.text = message.message
         }
     }
-}
 
-class MessageDiffCallback : DiffUtil.ItemCallback<MessageData>() {
-    override fun areItemsTheSame(oldItem: MessageData, newItem: MessageData): Boolean {
-        return oldItem.messageId == newItem.messageId
-    }
 
-    override fun areContentsTheSame(oldItem: MessageData, newItem: MessageData): Boolean {
-        return oldItem == newItem
+    object MessageDiffCallback : DiffUtil.ItemCallback<MessageData>() {
+        override fun areItemsTheSame(oldItem: MessageData, newItem: MessageData): Boolean {
+            return oldItem.messageId == newItem.messageId
+        }
+
+        override fun areContentsTheSame(oldItem: MessageData, newItem: MessageData): Boolean {
+            return oldItem == newItem
+        }
     }
 }
