@@ -10,7 +10,6 @@ fun QueryDocumentSnapshot.toMessage(): MessageData {
         kimdanUserId = get((MessageData::kimdanUserId.name)).toString(),
         kimgaUserId = get(MessageData::kimgaUserId.name).toString(),
         sentTime = get(MessageData::sentTime.name).toString()
-
     )
     return data
 }

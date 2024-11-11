@@ -18,47 +18,7 @@ class ChatRepositoryImpl(val kimdanUserId: String,val kimgaUserId: String) : Cha
 
     private val db = Firebase.firestore
 
-    override fun getMessage(
-        currentUserId: String,
-        otherUserId: String,
-        callback: MessagesCallback
-    ) {
-        val db = FirebaseFirestore.getInstance()
-        val messages = mutableListOf<MessageData>()
 
-        val query1 = db.collection("chats")
-            .whereEqualTo(AppConstants.KIMDAN_USER_ID, currentUserId)
-            .whereEqualTo(AppConstants.KIMGA_USER_ID, otherUserId)
-            .get()
-
-        val query2 = db.collection("chats")
-            .whereEqualTo(AppConstants.KIMDAN_USER_ID, otherUserId)
-            .whereEqualTo(AppConstants.KIMGA_USER_ID, currentUserId)
-            .get()
-
-        query1.addOnSuccessListener { result1 ->
-            for (document in result1.documents) {
-                val message = document.toObject(MessageData::class.java)
-                message?.let { messages.add(it) }
-            }
-
-            query2.addOnSuccessListener { result2 ->
-                for (document in result2.documents) {
-                    val message = document.toObject(MessageData::class.java)
-                    message?.let { messages.add(it) }
-                }
-
-                messages.sortBy { it.sentTime }
-                callback.onMessagesLoaded(messages)  // muvaffaqiyatli olingan natijalarni qaytarish
-
-            }.addOnFailureListener { exception ->
-                callback.onError(exception)  // xatolik yuzaga kelsa, callback yordamida yuborish
-            }
-
-        }.addOnFailureListener { exception ->
-            callback.onError(exception)  // query1 xato bo'lsa, callback yordamida xabar yuborish
-        }
-    }
 
 
     override fun getMessages(
@@ -87,11 +47,15 @@ class ChatRepositoryImpl(val kimdanUserId: String,val kimgaUserId: String) : Cha
     }
 
     override fun sendMessage(
-        message: String,
+        messageData: MessageData,
         onSuccess: () -> Unit,
         onFailure: (String) -> Unit
     ) {
-        val map = mapOf("message" to message)
+        val map = mapOf(
+            "message" to messageData.message,
+            AppConstants.KIMGA_USER_ID to messageData.kimgaUserId,
+            AppConstants.KIMDAN_USER_ID to messageData.kimdanUserId,
+            AppConstants.SENT_TIME to messageData.sentTime)
         db.collection("chats")
             .add(map)
             .addOnSuccessListener {

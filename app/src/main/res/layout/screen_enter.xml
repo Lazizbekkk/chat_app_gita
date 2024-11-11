@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp">
+>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:id="@+id/text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Give yourself a \n nickname and press enter"
+            android:text="Press enter to get new dusts."
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"

@@ -6,5 +6,6 @@ data class UserData(
     val userId: String = "",
     val userName: String = "",
     val userEmail: String = "",
-    val userProfileImage: String = ""
+    val userProfileImage: String = "",
+
 ): Serializable

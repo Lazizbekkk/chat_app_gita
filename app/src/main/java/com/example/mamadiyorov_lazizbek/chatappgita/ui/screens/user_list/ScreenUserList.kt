@@ -46,11 +46,11 @@ class ScreenUserList : Fragment(R.layout.screen_user_list) {
         userAdapter.setMoveUserClicked {
             findNavController().navigate(
                 ScreenUserListDirections.actionScreenUserListToChatsScreen(
+                    userIdCurrent = args.userId,
                     userIdOther = it.userId,
                     userNameNextOther = it.userName,
                     userProfileImageOther = it.userProfileImage,
                     userEmailOther = it.userEmail,
-                    userIdCurrent = ""
                 )
             )
         }

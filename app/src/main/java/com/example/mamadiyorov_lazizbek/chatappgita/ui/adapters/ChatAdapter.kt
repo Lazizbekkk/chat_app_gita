@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mamadiyorov_lazizbek.chatappgita.R
 import com.example.mamadiyorov_lazizbek.chatappgita.data.sourse.data.MessageData
 
-class ChatAdapter(private val currentUserId: String) :
-    ListAdapter<MessageData, RecyclerView.ViewHolder>(MessageDiffCallback) {
+class ChatAdapter(private val currentUserId: String) : ListAdapter<MessageData, RecyclerView.ViewHolder>(MessageDiffCallback) {
 
     private val VIEW_TYPE_SENT = 1
     private val VIEW_TYPE_RECEIVED = 2
