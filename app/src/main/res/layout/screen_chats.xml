@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Title Bar with Image and Search Icon -->
     <ImageView
         android:id="@+id/title"
         android:layout_width="match_parent"

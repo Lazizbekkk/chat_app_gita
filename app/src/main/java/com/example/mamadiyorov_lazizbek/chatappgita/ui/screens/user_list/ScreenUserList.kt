@@ -4,22 +4,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.mamadiyorov_lazizbek.chatappgita.R
-import com.example.mamadiyorov_lazizbek.chatappgita.databinding.ScreenEnterBinding
 import com.example.mamadiyorov_lazizbek.chatappgita.databinding.ScreenUserListBinding
 import com.example.mamadiyorov_lazizbek.chatappgita.ui.adapters.UserAdapter
 import com.example.mamadiyorov_lazizbek.chatappgita.viewmodels.user_list.UsersListViewModel
 import com.example.mamadiyorov_lazizbek.chatappgita.viewmodels.user_list.UsersListViewModelFactory
 import com.example.mamadiyorov_lazizbek.chatappgita.viewmodels.user_list.UsersListViewModelImpl
 
-class ScreenUserList: Fragment(R.layout.screen_user_list) {
-    private val binding : ScreenUserListBinding by viewBinding(ScreenUserListBinding::bind)
+class ScreenUserList : Fragment(R.layout.screen_user_list) {
+    private val binding: ScreenUserListBinding by viewBinding(ScreenUserListBinding::bind)
     private val args: ScreenUserListArgs by navArgs()
     private val userAdapter: UserAdapter by lazy { UserAdapter() }
     private val viewModel: UsersListViewModel by lazy {
@@ -44,6 +42,16 @@ class ScreenUserList: Fragment(R.layout.screen_user_list) {
             } else {
                 Log.d("AAAAAA", "Users list is null or empty")
             }
+        }
+        userAdapter.setMoveUserClicked {
+            findNavController().navigate(
+                ScreenUserListDirections.actionScreenUserListToChatsScreen(
+                    userIdOther = it.userId,
+                    userNameNextOther = it.userName,
+                    userProfileImageOther = it.userProfileImage,
+                    userEmailOther = it.userEmail
+                )
+            )
         }
 
 

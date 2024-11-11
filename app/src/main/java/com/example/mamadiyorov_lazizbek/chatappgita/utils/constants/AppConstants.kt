@@ -2,7 +2,7 @@ package com.example.mamadiyorov_lazizbek.chatappgita.utils.constants
 
 object AppConstants {
     const val USER_DB_NAME = "users"
-    const val MESSAGES_DB_NAME = "MESSAGES_LIST"
+    const val MESSAGES_DB_NAME = "chats"
 
     const val USER_ID = "userId"
     const val USER_NAME = "userName"

@@ -36,7 +36,31 @@
         <argument
             android:name="userProfileImage"
             app:argType="string" />
+        <action
+            android:id="@+id/action_screenUserList_to_chatsScreen"
+            app:destination="@id/chatsScreen" />
 
+    </fragment>
+    <fragment
+        tools:layout="@layout/screen_chats"
+        android:id="@+id/chatsScreen"
+        android:name="com.example.mamadiyorov_lazizbek.chatappgita.ui.screens.chats.ChatsScreen"
+        android:label="ChatsScreen" >
+        <argument
+            android:name="userIdCurrent"
+            app:argType="string" />
+        <argument
+            android:name="userIdOther"
+            app:argType="string" />
+        <argument
+            android:name="userNameNextOther"
+            app:argType="string" />
+        <argument
+            android:name="userEmailOther"
+            app:argType="string" />
+        <argument
+            android:name="userProfileImageOther"
+            app:argType="string" />
     </fragment>
 
 

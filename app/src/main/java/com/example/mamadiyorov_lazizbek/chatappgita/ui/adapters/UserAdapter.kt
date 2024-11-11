@@ -13,9 +13,10 @@ import com.example.mamadiyorov_lazizbek.chatappgita.databinding.ItemUsersBinding
 import de.hdodenhof.circleimageview.CircleImageView
 
 class UserAdapter: ListAdapter<UserData, UserAdapter.UserVH>(diffutil) {
-    object diffutil: DiffUtil.ItemCallback<UserData>(
+    private var moveUserClicked: ( (UserData) -> Unit) ?= null
 
-    ) {
+
+    object diffutil: DiffUtil.ItemCallback<UserData>() {
         override fun areItemsTheSame(oldItem: UserData, newItem: UserData): Boolean {
             return oldItem.userId == newItem.userId
         }
@@ -26,6 +27,11 @@ class UserAdapter: ListAdapter<UserData, UserAdapter.UserVH>(diffutil) {
     }
 
     inner class UserVH(private val binding: ItemUsersBinding): RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {
+                moveUserClicked?.invoke(currentList[adapterPosition])
+            }
+        }
         fun bind(){
             binding.userName.text = currentList[adapterPosition].userName
             loadUserProfileImage(currentList[adapterPosition].userProfileImage, binding.profileImage)
@@ -47,5 +53,9 @@ class UserAdapter: ListAdapter<UserData, UserAdapter.UserVH>(diffutil) {
 
     override fun onBindViewHolder(holder: UserVH, position: Int) {
         holder.bind()
+    }
+
+    fun setMoveUserClicked(l : ((UserData) -> Unit)){
+        moveUserClicked = l
     }
 }
