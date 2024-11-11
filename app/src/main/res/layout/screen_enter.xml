@@ -46,6 +46,7 @@
         app:layout_constraintTop_toBottomOf="@id/guid_line"/>
 
     <EditText
+        android:visibility="gone"
         android:id="@+id/inputUserNickName"
         android:layout_margin="20dp"
         android:backgroundTint="#40C4FF"

@@ -7,5 +7,5 @@ data class MessageData(
     val message: String,
     val kimdanUserId: String,
     val kimgaUserId: String,
-    val sentTime: String
+    val sentTime: Long
 ): Serializable

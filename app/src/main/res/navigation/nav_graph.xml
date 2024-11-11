@@ -12,6 +12,8 @@
         android:name="com.example.mamadiyorov_lazizbek.chatappgita.ui.screens.enter.EnterScreen"
         android:label="EnterScreen" >
         <action
+            app:popUpToInclusive="true"
+            app:popUpTo="@layout/screen_enter"
             android:id="@+id/action_enterScreen_to_screenUserList"
             app:destination="@id/screenUserList" />
 
@@ -20,7 +22,8 @@
         tools:layout="@layout/screen_user_list"
         android:id="@+id/screenUserList"
         android:name="com.example.mamadiyorov_lazizbek.chatappgita.ui.screens.user_list.ScreenUserList"
-        android:label="ScreenUserList" >
+        android:label="ScreenUserList"
+        >
         <argument
             android:name="userId"
             app:argType="string" />
