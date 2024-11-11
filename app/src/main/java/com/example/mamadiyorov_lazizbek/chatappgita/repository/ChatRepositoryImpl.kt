@@ -2,11 +2,14 @@ package com.example.mamadiyorov_lazizbek.chatappgita.repository
 
 import com.example.mamadiyorov_lazizbek.chatappgita.data.sourse.data.MessageData
 import com.example.mamadiyorov_lazizbek.chatappgita.utils.constants.AppConstants
+import com.example.mamadiyorov_lazizbek.chatappgita.utils.constants.AppConstants.KIMGA_USER_ID
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.tasks.await
+import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
-class ChatRepositoryImpl(kimdanUserId: String, kimgaUserId: String): ChatRepository {
+class ChatRepositoryImpl(kimdanUserId: String, kimgaUserId: String) : ChatRepository {
 
     /*
     *
@@ -15,7 +18,15 @@ class ChatRepositoryImpl(kimdanUserId: String, kimgaUserId: String): ChatReposit
     *
     * */
 
-    override fun getMessages(currentUserId: String, otherUserId: String, callback: MessagesCallback) {
+    private var messagesListener: ListenerRegistration? = null
+
+    private val db = Firebase.firestore
+
+    override fun getMessage(
+        currentUserId: String,
+        otherUserId: String,
+        callback: MessagesCallback
+    ) {
         val db = FirebaseFirestore.getInstance()
         val messages = mutableListOf<MessageData>()
 
@@ -51,5 +62,32 @@ class ChatRepositoryImpl(kimdanUserId: String, kimgaUserId: String): ChatReposit
         }.addOnFailureListener { exception ->
             callback.onError(exception)  // query1 xato bo'lsa, callback yordamida xabar yuborish
         }
+    }
+
+
+    override fun getMessages(
+        fromUserId: String,
+        toUserId: String,
+        onMessagesChanged: (List<MessageData>) -> Unit
+    ) {
+
+        db.collection("chats")
+            .whereEqualTo(AppConstants.KIMDAN_USER_ID, fromUserId)
+            .whereEqualTo(KIMGA_USER_ID, toUserId)
+            .addSnapshotListener { snapshot, exception ->
+                if (exception != null) {
+                    exception.printStackTrace()
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null && !snapshot.isEmpty) {
+                    val messages = snapshot.documents.map { document ->
+                        document.toObject(MessageData::class.java)!!
+                    }
+                    onMessagesChanged(messages)
+                } else {
+                    onMessagesChanged(emptyList())
+                }
+            }
     }
 }
