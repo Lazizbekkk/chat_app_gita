@@ -2,6 +2,7 @@ package com.example.mamadiyorov_lazizbek.chatappgita.ui.screens.chats
 
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -36,18 +37,32 @@ class ChatsScreen : Fragment(R.layout.screen_chats) {
 
         viewModel.showMessages.observe(viewLifecycleOwner){
             adapter.submitList(it)
+            if(it.isNotEmpty()){
+                binding.recChats.smoothScrollToPosition(adapter.itemCount)
+            }
+
         }
 
         viewModel.getAllChats()
 
 
         binding.recChats.adapter = adapter
-        binding.recChats.layoutManager = LinearLayoutManager(requireContext())
+        binding.recChats.layoutManager = LinearLayoutManager(requireContext()).apply {
+            binding.recChats.smoothScrollToPosition(adapter.itemCount)
+        }
         binding.buttonSend.setOnClickListener {
-            viewModel.sendMessage(MessageData(SystemClock.elapsedRealtime().toString(),
-                binding.inputMessage.text.toString(),
-                kimdanUserId = args.userIdCurrent, kimgaUserId = args.userIdOther,
-                SystemClock.elapsedRealtime().toString()))
+            Log.d("LLLLLLLLLL", "message ketdi: ${System.currentTimeMillis().toString().toString()}")
+            if(binding.inputMessage.text.isNotEmpty()){
+                viewModel.sendMessage(
+                    MessageData(
+                        sentTime = System.currentTimeMillis().toString(),
+                        messageId = System.currentTimeMillis().toString(),
+                        message =  binding.inputMessage.text.toString(),
+                        kimdanUserId = args.userIdCurrent, kimgaUserId = args.userIdOther,
+                    )
+                )
+            }
+
             binding.inputMessage.setText("")
             viewModel.getAllChats()
         }

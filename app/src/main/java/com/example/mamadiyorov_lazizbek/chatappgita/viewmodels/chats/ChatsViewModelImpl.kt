@@ -11,18 +11,21 @@ class ChatsViewModelImpl(private val kimdanUserId: String, private val kimgaUser
     private val repository: ChatRepository = ChatRepositoryImpl(kimdanUserId, kimgaUserId)
     override val error: MutableLiveData<String> = MutableLiveData()
     override val showMessages: MutableLiveData<List<MessageData>> = MutableLiveData()
+
     override val sendMessage: MutableLiveData<String> = MutableLiveData()
 
     override fun sendMessage(messageData: MessageData) {
-      repository.sendMessage(
-          messageData,
-          onSuccess = {
-              sendMessage.value = messageData.message
-          },
-          onFailure = {
-              error.value = it.toString()
-          }
-      )
+        if(sendMessage.value != messageData.message){
+            repository.sendMessage(
+                messageData,
+                onSuccess = {
+                    sendMessage.value = messageData.message
+                },
+                onFailure = {
+                    error.value = it.toString()
+                }
+            )
+        }
     }
 
     override fun getAllChats() {

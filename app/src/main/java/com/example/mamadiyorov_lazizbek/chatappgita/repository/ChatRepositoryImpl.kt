@@ -3,8 +3,10 @@ package com.example.mamadiyorov_lazizbek.chatappgita.repository
 import androidx.lifecycle.MutableLiveData
 import com.example.mamadiyorov_lazizbek.chatappgita.data.sourse.data.MessageData
 import com.example.mamadiyorov_lazizbek.chatappgita.utils.constants.AppConstants
+import com.example.mamadiyorov_lazizbek.chatappgita.utils.constants.AppConstants.KIMGA_USER_ID
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -27,8 +29,8 @@ class ChatRepositoryImpl(val kimdanUserId: String,val kimgaUserId: String) : Cha
         onMessagesChanged: (List<MessageData>) -> Unit
     ) {
         db.collection("chats")
-//            .whereEqualTo(AppConstants.KIMDAN_USER_ID, fromUserId)
-//            .whereEqualTo(KIMGA_USER_ID, toUserId)
+            .whereIn(AppConstants.KIMDAN_USER_ID, listOf(fromUserId, toUserId))
+            .whereIn(KIMGA_USER_ID, listOf(fromUserId, toUserId))
             .addSnapshotListener { snapshot, exception ->
                 if (exception != null) {
                     exception.printStackTrace()
@@ -51,13 +53,19 @@ class ChatRepositoryImpl(val kimdanUserId: String,val kimgaUserId: String) : Cha
         onSuccess: () -> Unit,
         onFailure: (String) -> Unit
     ) {
+
         val map = mapOf(
-            "message" to messageData.message,
+            AppConstants.MESSAGES_TEXT to messageData.message,
+            AppConstants.MESSAGES_ID to messageData.messageId,
             AppConstants.KIMGA_USER_ID to messageData.kimgaUserId,
             AppConstants.KIMDAN_USER_ID to messageData.kimdanUserId,
             AppConstants.SENT_TIME to messageData.sentTime)
-        db.collection("chats")
-            .add(map)
+
+        val documentId = messageData.sentTime.toString()
+
+        db.collection(AppConstants.MESSAGES_DB_NAME)
+            .document(documentId)
+            .set(map)
             .addOnSuccessListener {
                 onSuccess.invoke()
 //            getMessages(kimdanUserId,kimgaUserId,)}

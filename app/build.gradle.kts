@@ -97,4 +97,6 @@ dependencies {
     // Glide
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 
+    implementation ("com.google.firebase:firebase-database:20.0.5")
+
 }

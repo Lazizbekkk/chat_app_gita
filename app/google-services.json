@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "900873766415",
+    "firebase_url": "https://chat-app-gita-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "chat-app-gita",
     "storage_bucket": "chat-app-gita.firebasestorage.app"
   },

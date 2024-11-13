@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mamadiyorov_lazizbek.chatappgita.R
 import com.example.mamadiyorov_lazizbek.chatappgita.data.sourse.data.MessageData
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class ChatAdapter(private val currentUserId: String) : ListAdapter<MessageData, RecyclerView.ViewHolder>(MessageDiffCallback) {
 
@@ -45,6 +48,9 @@ class ChatAdapter(private val currentUserId: String) : ListAdapter<MessageData, 
 
         fun bind(message: MessageData) {
             sentMessageTextView.text = message.message
+            val date = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date(getItem(adapterPosition).sentTime.toLong()))
+            itemView.findViewById<TextView>(R.id.send_time).text = date
+
         }
     }
 
@@ -53,6 +59,8 @@ class ChatAdapter(private val currentUserId: String) : ListAdapter<MessageData, 
 
         fun bind(message: MessageData) {
             receivedMessageTextView.text = message.message
+            val date = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date(getItem(adapterPosition).sentTime.toLong()))
+            itemView.findViewById<TextView>(R.id.come_time).text = date
         }
     }
 
